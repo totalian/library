@@ -1,3 +1,65 @@
-h1 {
-    color: red;
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    background-color: #3F3333;
+    align-items: center;
+    margin: 0px
+}
+
+nav h1 {
+    color: white;
+}
+
+nav button {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 100px;
+    height: 50px;
+    border-radius: 15px
+}
+
+#bookcase {
+    width: 450px;
+    height: auto;
+    min-height: 1000px;
+    padding: 10px;
+    background-color: papayawhip;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: first baseline;
+    border: 5px solid beige
+}
+
+.book {
+    background-color: white;
+    height: 170px;
+    width: 130px;
+    margin: 10px;
+    box-shadow: 2px 2px gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.book > div {
+    flex-grow: 1;
+    text-align: center;
+    padding: 20px;
+}
+
+.author {
+    font-size: 10px;
+}
+
+.read {
+    box-shadow: 2px 2px gold;
 }
