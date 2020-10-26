@@ -13,9 +13,27 @@
     </nav>
     <div id="bookcase">
         <div class="book read">
+            <button class="remove">&times</button>
             <div class="booktitle">Lion King</div>
-            <div class = "author">Walt Disney King of stuff</div>
+            <div class = "author subinfo">Walt Disney King of stuff</div>
+            <div class="pages subinfo">(100 pages)</div>
+            <div class="status subinfo">Read</div>
         </div>
+    </div>
+    <div id="modal">
+        <form action="">
+            <label for="ftitle">Book title</label>
+            <input type="text" name="title" id="ftitle">
+            <label for="fauthor">Author</label>
+            <input type="text" name="author" id="fauthor">
+            <label for="fpages">Number of pages</label>
+            <input type="number" name="pages" id="fpages">
+            <label for="fread">Read</label>
+            <input type="radio" name="hasRead" value="read" id="fread">
+            <label for="funread">Not read</label>
+            <input type="radio" name="hasRead" value="unread" id="funread">
+            <input type="submit">
+        </form>
     </div>
 
     <script src="/main.js"></script>

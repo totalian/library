@@ -45,21 +45,61 @@ nav button {
     width: 130px;
     margin: 10px;
     box-shadow: 2px 2px gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        ". . . . remove"
+        "title title title title title"
+        "title title title title title"
+        "author author author author author"
+        "pages pages pages pages pages"
+        "status status status status status"
 }
 
-.book > div {
-    flex-grow: 1;
+.remove {
+    grid-area: remove;
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 8px;
+}
+
+.booktitle {
+    grid-area: title;
     text-align: center;
-    padding: 20px;
 }
 
 .author {
-    font-size: 10px;
+    grid-area: author;
+}
+
+.pages {
+    grid-area: pages;
+}
+
+.status {
+    grid-area: status;
 }
 
 .read {
     box-shadow: 2px 2px gold;
+}
+
+.subinfo {
+    font-size: 12px;
+    text-align: center;
+    align-self: center;
+}
+
+#modal {
+    position: fixed;
+    z-index: 1;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    border: 1px solid black;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
 }
