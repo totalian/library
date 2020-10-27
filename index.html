@@ -9,7 +9,7 @@
 <body>
     <nav>
         <h1>My library</h1>
-        <button>New Book</button>
+        <button id="newbook">New Book</button>
     </nav>
     <div id="bookcase">
         <div class="book read">
@@ -21,17 +21,25 @@
         </div>
     </div>
     <div id="modal">
-        <form action="">
+        <button id="modalclose">&times</button>
+        <form id="newbookform" action="">
+            <h2>Add a new book below</h2>
+            
             <label for="ftitle">Book title</label>
             <input type="text" name="title" id="ftitle">
+
             <label for="fauthor">Author</label>
             <input type="text" name="author" id="fauthor">
+
             <label for="fpages">Number of pages</label>
             <input type="number" name="pages" id="fpages">
+
             <label for="fread">Read</label>
-            <input type="radio" name="hasRead" value="read" id="fread">
+            <input type="radio" name="hasRead" value=true id="fread">
+
             <label for="funread">Not read</label>
-            <input type="radio" name="hasRead" value="unread" id="funread">
+            <input type="radio" name="hasRead" value=false id="funread">
+
             <input type="submit">
         </form>
     </div>
