@@ -41,8 +41,18 @@ function createBook(){
     modal.style.display = "none"
 }
 
-function removeBook(){
-    console.log("book removed")
+function removeBook(button){
+    let i = button.target.dataset.index
+    myLibrary.splice(i,1)
+    displayLibrary(myLibrary)
+}
+
+function changeBookStatus(e){
+    let i = e.target.dataset.index
+    myLibrary[i].hasRead ? myLibrary[i].hasRead=false : myLibrary[i].hasRead=true
+    console.log(e)
+    e.target.parentElement.classList.toggle('read')
+    e.target.innerHTML == "Read" ? e.target.innerHTML="Unread" : e.target.innerHTML="Read"
 }
 
 function removeAllChildNodes(parent) {
@@ -53,7 +63,7 @@ function removeAllChildNodes(parent) {
 
 function displayLibrary(library){
     removeAllChildNodes(bookcase)
-    library.forEach(book => {
+    library.forEach((book,i) => {
         let displayedBook = document.createElement('div')
         let removeButton = document.createElement('button')
         let bookTitle = document.createElement('div')
@@ -76,11 +86,14 @@ function displayLibrary(library){
         displayedBook.appendChild(bookAuthor)
         displayedBook.appendChild(bookPages)
         displayedBook.appendChild(bookStatus)
+        removeButton.dataset.index = i
+        bookStatus.dataset.index = i
         bookcase.appendChild(displayedBook)
         if(book.hasRead){
             displayedBook.classList.add('read')
         }
-        removeButton.addEventListener('click',() => console.log('hello'))
+        removeButton.addEventListener('click',(e) => removeBook(e))
+        bookStatus.addEventListener('click',e => changeBookStatus(e))
     })
 }
 
