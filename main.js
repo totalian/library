@@ -35,6 +35,7 @@ function createBook(){
     hasRead = (hasReadArray.filter(input => input.checked == true)[0].value == "true" ? true : false)
     let book = new Book(title,author,pages,hasRead)
     addBookToLibrary(book)
+    save()
     document.querySelector('#ftitle').value = ""
     document.querySelector('#fauthor').value = ""
     document.querySelector('#fpages').value = ""
@@ -44,6 +45,7 @@ function createBook(){
 function removeBook(button){
     let i = button.target.dataset.index
     myLibrary.splice(i,1)
+    save()
     displayLibrary(myLibrary)
 }
 
@@ -59,6 +61,10 @@ function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+}
+
+function save(){
+    localStorage.setItem('myLibrary',JSON.stringify(myLibrary))
 }
 
 function displayLibrary(library){
@@ -98,5 +104,9 @@ function displayLibrary(library){
 }
 
 window.onload = (() => {
+    if(localStorage.length >0){
+        myLibrary = JSON.parse(localStorage.myLibrary)
+        displayLibrary(myLibrary)
+    }
     setEvents()
 })
