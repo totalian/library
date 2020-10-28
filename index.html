@@ -12,13 +12,6 @@
         <button id="newbook">New Book</button>
     </nav>
     <div id="bookcase">
-        <div class="book read">
-            <button class="remove">&times</button>
-            <div class="booktitle">Lion King</div>
-            <div class = "author subinfo">Walt Disney King of stuff</div>
-            <div class="pages subinfo">(100 pages)</div>
-            <div class="status subinfo">Read</div>
-        </div>
     </div>
     <div id="modal">
         <button id="modalclose">&times</button>
@@ -26,19 +19,19 @@
             <h2>Add a new book below</h2>
             
             <label for="ftitle">Book title</label>
-            <input type="text" name="title" id="ftitle">
+            <input type="text" name="title" id="ftitle" required>
 
             <label for="fauthor">Author</label>
-            <input type="text" name="author" id="fauthor">
+            <input type="text" name="author" id="fauthor" required>
 
             <label for="fpages">Number of pages</label>
-            <input type="number" name="pages" id="fpages">
+            <input type="number" name="pages" id="fpages" required>
 
             <label for="fread">Read</label>
-            <input type="radio" name="hasRead" value=true id="fread">
+            <input type="radio" name="hasRead" value='true' id="fread" checked>
 
             <label for="funread">Not read</label>
-            <input type="radio" name="hasRead" value=false id="funread">
+            <input type="radio" name="hasRead" value='false' id="funread">
 
             <input type="submit">
         </form>

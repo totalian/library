@@ -2,6 +2,7 @@ const newBook = document.querySelector('#newbook')
 const modal = document.querySelector('#modal')
 const modalClose = document.querySelector('#modalclose')
 const newBookForm = document.querySelector('#newbookform')
+const bookcase = document.querySelector('#bookcase')
 
 let myLibrary = []
 
@@ -16,12 +17,15 @@ function addBookToLibrary(book){
     myLibrary.push(book)
 }
 
-newBook.addEventListener('click',() => modal.style.display = "block")
-modalClose.addEventListener('click', () => modal.style.display = "none")
-newBookForm.addEventListener('submit',e => {
-    // e.preventDefault()
-    createBook()
-})
+const setEvents = () => {
+    newBook.addEventListener('click',() => modal.style.display = "block")
+    modalClose.addEventListener('click', () => modal.style.display = "none")
+    newBookForm.addEventListener('submit',e => {
+        e.preventDefault()
+        createBook()
+        displayLibrary(myLibrary)
+    })
+}
 
 function createBook(){
     let title = document.querySelector('#ftitle').value
@@ -31,4 +35,55 @@ function createBook(){
     hasRead = (hasReadArray.filter(input => input.checked == true)[0].value == "true" ? true : false)
     let book = new Book(title,author,pages,hasRead)
     addBookToLibrary(book)
+    document.querySelector('#ftitle').value = ""
+    document.querySelector('#fauthor').value = ""
+    document.querySelector('#fpages').value = ""
+    modal.style.display = "none"
 }
+
+function removeBook(){
+    console.log("book removed")
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+function displayLibrary(library){
+    removeAllChildNodes(bookcase)
+    library.forEach(book => {
+        let displayedBook = document.createElement('div')
+        let removeButton = document.createElement('button')
+        let bookTitle = document.createElement('div')
+        let bookAuthor = document.createElement('div')
+        let bookPages = document.createElement('div')
+        let bookStatus = document.createElement('div')
+        displayedBook.classList.add('book')
+        removeButton.classList.add('remove')
+        bookTitle.classList.add('booktitle')
+        bookAuthor.classList.add('author','subinfo')
+        bookPages.classList.add('pages','subinfo')
+        bookStatus.classList.add('status','subinfo')
+        bookTitle.innerHTML = book.title
+        bookAuthor.innerHTML = book.author
+        bookPages.innerHTML = book.pages
+        bookStatus.innerHTML = book.hasRead ? "Read" : "Unread"
+        removeButton.innerHTML = "&times"
+        displayedBook.appendChild(removeButton)
+        displayedBook.appendChild(bookTitle)
+        displayedBook.appendChild(bookAuthor)
+        displayedBook.appendChild(bookPages)
+        displayedBook.appendChild(bookStatus)
+        bookcase.appendChild(displayedBook)
+        if(book.hasRead){
+            displayedBook.classList.add('read')
+        }
+        removeButton.addEventListener('click',() => console.log('hello'))
+    })
+}
+
+window.onload = (() => {
+    setEvents()
+})
